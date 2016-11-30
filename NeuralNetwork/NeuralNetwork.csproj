@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataRecord.cs" />
+    <Compile Include="Data\DataSet.cs" />
+    <Compile Include="Data\DataSetCSV.cs" />
+    <Compile Include="Data\DataSetTextFile.cs" />
+    <Compile Include="Data\IDataRecord.cs" />
+    <Compile Include="Data\IDataSet.cs" />
+    <Compile Include="Exceptions\InvalidDataFileException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
