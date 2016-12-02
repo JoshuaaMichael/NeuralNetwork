@@ -48,7 +48,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			int actual = sut.Count();
 
 			//Asset
@@ -61,7 +61,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			int actual = sut.CountRemaining();
 
 			//Asset
@@ -74,7 +74,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			IDataRecord actual = sut.GetNextRecord();
 
 			//Asset
@@ -87,7 +87,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			IDataRecord actual = sut.GetCurrentRecord();
 
 			//Asset
@@ -100,7 +100,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			sut.Shuffle();
 
 			//Asset
@@ -113,7 +113,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			Tuple<IDataSet, IDataSet> actual = sut.Split(0.5);
 			DataSet empty = new DataSet();
 
@@ -128,7 +128,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			IDataSet clone = (IDataSet)sut.Clone();
 
 			//Asset
@@ -141,7 +141,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			sut.Reset();
 			int actual = sut.Count();
 
@@ -155,7 +155,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			sut.Reset();
 			int actual = sut.CountRemaining();
 
@@ -169,7 +169,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			sut.Reset();
 			IDataRecord actual = sut.GetNextRecord();
 
@@ -183,7 +183,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet();
 
-			//Execute
+			//Act
 			sut.Reset();
 			IDataRecord actual = sut.GetCurrentRecord();
 
@@ -197,7 +197,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			int actual = sut.Count();
 
 			//Asset
@@ -210,7 +210,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			int actual = sut.CountRemaining();
 
 			//Asset
@@ -224,7 +224,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			int countToRemove = 5;
 
-			//Execute
+			//Act
 			for (int i = 0; i < countToRemove; i++)
 			{
 				sut.GetNextRecord();
@@ -241,7 +241,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for(int i = 0; i < COUNT_TEST_RECORDS; i++)
 			{
 				sut.GetNextRecord();
@@ -258,7 +258,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS + 1; i++)
 			{
 				sut.GetNextRecord();
@@ -275,7 +275,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			IDataRecord actual = sut.GetNextRecord();
 
 			//Asset
@@ -288,7 +288,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < (COUNT_TEST_RECORDS / 2) - 1; i++) //Half, without the one we're interested in
 			{
 				sut.GetNextRecord();
@@ -305,7 +305,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS - 1; i++) //Skip to the second last one
 			{
 				sut.GetNextRecord();
@@ -322,7 +322,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS; i++) //Skip to the last one
 			{
 				sut.GetNextRecord();
@@ -339,7 +339,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			IDataRecord actual = sut.GetCurrentRecord();
 
 			//Asset
@@ -352,7 +352,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < (COUNT_TEST_RECORDS / 2) - 1; i++) //Half, without the one we're interested in
 			{
 				sut.GetNextRecord();
@@ -369,7 +369,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS; i++) //Skip to the last one
 			{
 				sut.GetNextRecord();
@@ -386,7 +386,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS + 5; i++) //Skip to the last one
 			{
 				sut.GetNextRecord();
@@ -403,7 +403,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			sut.Reset();
 			IDataRecord actual = sut.GetCurrentRecord();
 
@@ -417,7 +417,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS / 2; i++) //Go half way
 			{
 				sut.GetNextRecord();
@@ -435,7 +435,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS; i++) //Skip to the last one
 			{
 				sut.GetNextRecord();
@@ -453,7 +453,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS + 5; i++) //Skip to the last one, plus more
 			{
 				sut.GetNextRecord();
@@ -471,7 +471,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			sut.Reset();
 			IDataRecord actual = sut.GetNextRecord();
 
@@ -485,7 +485,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS / 2; i++) //Half
 			{
 				sut.GetNextRecord();
@@ -503,7 +503,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS; i++) //Skip to the last one
 			{
 				sut.GetNextRecord();
@@ -521,7 +521,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS + 5; i++) //Skip to the last one, plus some more
 			{
 				sut.GetNextRecord();
@@ -539,7 +539,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			sut.Reset();
 			int actual = sut.Count();
 
@@ -553,7 +553,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			sut.Reset();
 			int actual = sut.CountRemaining();
 
@@ -568,7 +568,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = 0.5;
 
-			//Execute
+			//Act
 			Tuple<IDataSet, IDataSet> pair = sut.Split(splitPercentage);
 
 			//Asset
@@ -598,7 +598,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = 0.8;
 
-			//Execute
+			//Act
 			Tuple<IDataSet, IDataSet> pair = sut.Split(splitPercentage);
 
 			//Asset
@@ -628,7 +628,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = 1.0;
 
-			//Execute
+			//Act
 			Tuple<IDataSet, IDataSet> pair = sut.Split(splitPercentage);
 
 			//Asset
@@ -658,7 +658,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = 1.5;
 
-			//Execute
+			//Act
 			ActualValueDelegate<object> testDelegate = () => sut.Split(splitPercentage);
 
 			//Assert
@@ -672,7 +672,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = 0.0;
 
-			//Execute
+			//Act
 			Tuple<IDataSet, IDataSet> pair = sut.Split(splitPercentage);
 
 			//Asset
@@ -702,7 +702,7 @@ namespace NeuralNetworkTest.Data
 			DataSet sut = new DataSet(testDataRecords);
 			double splitPercentage = -0.5;
 
-			//Execute
+			//Act
 			ActualValueDelegate<object> testDelegate = () => sut.Split(splitPercentage);
 
 			//Assert
@@ -715,7 +715,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			IDataSet clone = (IDataSet)sut.Clone();
 
 			//Asset
@@ -736,7 +736,7 @@ namespace NeuralNetworkTest.Data
 			//Arrange
 			DataSet sut = new DataSet(testDataRecords);
 
-			//Execute
+			//Act
 			for (int i = 0; i < COUNT_TEST_RECORDS / 2; i++) //Advance through half
 			{
 				sut.GetNextRecord();
