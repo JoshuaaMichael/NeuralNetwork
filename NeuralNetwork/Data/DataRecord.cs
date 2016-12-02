@@ -4,43 +4,45 @@ namespace NeuralNetwork.Data
 {
 	public class DataRecord : IDataRecord
 	{
-		protected double[] input;
-		protected double[] output;
+		protected double[] inputs;
+		protected double[] outputs;
 
 		private DataRecord() { }
 
-		public DataRecord(double[] input, double[] output)
+		public DataRecord(double[] inputs, double[] outputs)
 		{
-			this.input = input;
-			this.output = output;
+			this.inputs = inputs;
+			this.outputs = outputs;
 		}
 
 		public object Clone()
 		{
 			DataRecord dr = new DataRecord();
-			Array.Copy(input, dr.input, input.Length);
-			Array.Copy(output, dr.output, output.Length);
+			dr.inputs = new double[inputs.Length];
+			dr.outputs = new double[outputs.Length];
+			Array.Copy(inputs, dr.inputs, inputs.Length);
+			Array.Copy(outputs, dr.outputs, outputs.Length);
 			return dr;
 		}
 
-		public double[] GetInput()
+		public double[] GetInputs()
 		{
-			return input;
+			return inputs;
 		}
 
-		public double[] GetOutput()
+		public double[] GetOutputs()
 		{
-			return output;
+			return outputs;
 		}
 
-		public int NumberOfInput()
+		public int NumberOfInputs()
 		{
-			return input.Length;
+			return inputs.Length;
 		}
 
-		public int NumberOfOutput()
+		public int NumberOfOutputs()
 		{
-			return output.Length;
+			return outputs.Length;
 		}
 	}
 }

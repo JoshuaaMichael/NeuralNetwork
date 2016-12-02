@@ -4,9 +4,9 @@ namespace NeuralNetwork.Data
 {
 	public interface IDataRecord : ICloneable
 	{
-		double[] GetInput();
-		double[] GetOutput();
-		int NumberOfInput();
-		int NumberOfOutput();
+		double[] GetInputs();
+		double[] GetOutputs();
+		int NumberOfInputs();
+		int NumberOfOutputs();
 	}
 }

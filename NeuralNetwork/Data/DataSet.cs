@@ -5,14 +5,16 @@ namespace NeuralNetwork.Data
 {
 	public class DataSet : IDataSet
 	{
+		protected static Random rand = new Random();
+
 		protected List<IDataRecord> dataRecords;
 		protected int currentIndex;
-		protected static Random rand = new Random();
+		const int EMPTY_INDEX = -1;
 
 		public DataSet()
 		{
 			dataRecords = new List<IDataRecord>();
-			currentIndex = -1;
+			currentIndex = EMPTY_INDEX;
 		}
 
 		public DataSet(List<IDataRecord> dataRecords)
@@ -48,12 +50,19 @@ namespace NeuralNetwork.Data
 
 		public IDataRecord GetCurrentRecord()
 		{
-			return dataRecords[currentIndex];
+			if (currentIndex > dataRecords.Count - 1 || currentIndex == EMPTY_INDEX)
+			{
+				return null;
+			}
+			else
+			{
+				return dataRecords[currentIndex];
+			}
 		}
 
 		public void Reset()
 		{
-			currentIndex = 0;
+			currentIndex = EMPTY_INDEX;
 		}
 
 		public void Shuffle()
@@ -71,6 +80,11 @@ namespace NeuralNetwork.Data
 
 		public Tuple<IDataSet, IDataSet> Split(double percentage)
 		{
+			if(percentage < 0 || percentage > 1)
+			{
+				throw new ArgumentException("Invalid percentage");
+			}
+
 			int countFirst = (int)(dataRecords.Count * percentage);
 			List<IDataRecord> first = new List<IDataRecord>();
 			List<IDataRecord> second = new List<IDataRecord>();
