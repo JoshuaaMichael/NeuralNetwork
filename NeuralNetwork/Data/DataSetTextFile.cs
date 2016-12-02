@@ -57,11 +57,6 @@ namespace NeuralNetwork.Data
 				{
 					continue;
 				}
-				if (line.Split(',').Length != inputCount + outputCount)
-				{
-					dataRecords.Clear();
-					throw new InvalidDataFileException("The data file " + filename + " has an invalid line on line " + lineNumber.ToString());
-				}
 				Tuple<double[], double[]> record = HandleLine(line, inputCount, outputCount);
 				DataRecord dataRow = new DataRecord(record.Item1, record.Item2);
 				dataRecords.Add(dataRow);

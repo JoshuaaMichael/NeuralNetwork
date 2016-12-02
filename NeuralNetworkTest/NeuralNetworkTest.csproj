@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataRecordTest.cs" />
+    <Compile Include="Data\DataSetCSVTest.cs" />
     <Compile Include="Data\DataSetTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
