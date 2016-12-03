@@ -6,29 +6,33 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 {
 	public class BackPropagationData
 	{
-		protected double eta, alpha, targetError;
-		protected int numberOfEpochs, numberOfIterations;
+		public double Eta { get; protected set; }
+		public double Alpha { get; protected set; }
+		public double TargetError { get; protected set; }
+		public int NumberOfEpochs { get; protected set; }
+		public int NumberOfIterations { get; protected set; }
 
 		protected double[] gradients;
 		protected double[] previousWeightDelta;
 		protected double[] previousBiasDelta;
 
-		protected IDataSet dataSetTraining, dataSetTesting;
-		protected INeuralNetworkNodes nodes;
+		public IDataSet DataSetTraining { get; protected set; }
+		public IDataSet DataSetTesting { get; protected set; }
+		public INeuralNetworkNodes Nodes { get; protected set; }
 
 		private BackPropagationData(INeuralNetworkNodes nodes, IDataSet dataSet, double trainingData, double eta, double alpha, double targetError, int numberOfEpochs, int numberOfIterations)
 		{
-			this.nodes = nodes; //Required for navigating arrays
+			this.Nodes = nodes; //Required for navigating arrays
 
 			Tuple<IDataSet, IDataSet> dataSetSplit = dataSet.Split(trainingData);
-			dataSetTraining = dataSetSplit.Item1;
-			dataSetTesting = dataSetSplit.Item2;
+			DataSetTraining = dataSetSplit.Item1;
+			DataSetTesting = dataSetSplit.Item2;
 
-			this.eta = eta;
-			this.alpha = alpha;
-			this.targetError = targetError;
-			this.numberOfEpochs = numberOfEpochs;
-			this.numberOfIterations = numberOfIterations;
+			this.Eta = eta;
+			this.Alpha = alpha;
+			this.TargetError = targetError;
+			this.NumberOfEpochs = numberOfEpochs;
+			this.NumberOfIterations = numberOfIterations;
 
 			gradients = new double[nodes.NumberOfSums()];
 			previousWeightDelta = new double[nodes.NumberOfWeights()];
@@ -37,33 +41,32 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 
 		public double GetGradient(int layer, int node)
 		{
-			int value = nodes.GetNodeOffset(layer) + node;
-			return gradients[value];
+			return gradients[Nodes.GetNodeOffset(layer) + node];
 		}
 
 		public void SetGradient(int layer, int node, double value)
 		{
-			gradients[nodes.GetNodeOffset(layer) + node] = value;
+			gradients[Nodes.GetNodeOffset(layer) + node] = value;
 		}
 
 		public double GetPreviousBiasDelta(int layer, int node)
 		{
-			return previousBiasDelta[nodes.GetNodeOffset(layer) + node];
+			return previousBiasDelta[Nodes.GetNodeOffset(layer) + node];
 		}
 
 		public void SetPreviousBiasDelta(int layer, int node, double value)
 		{
-			previousBiasDelta[nodes.GetNodeOffset(layer) + node] = value;
+			previousBiasDelta[Nodes.GetNodeOffset(layer) + node] = value;
 		}
 
 		public double GetPreviousWeightDelta(int layerFrom, int indexFrom, int layerTo, int indexTo)
 		{
-			return previousWeightDelta[nodes.GetWeightOffset(layerTo) + (indexTo * nodes.NumberOfNodesInLayer(layerFrom)) + indexFrom];
+			return previousWeightDelta[Nodes.GetWeightOffset(layerTo) + (indexTo * Nodes.NumberOfNodesInLayer(layerFrom)) + indexFrom];
 		}
 
 		public void SetPreviousWeightDelta(int layerFrom, int indexFrom, int layerTo, int indexTo, double value)
 		{
-			previousWeightDelta[nodes.GetWeightOffset(layerTo) + (indexTo * nodes.NumberOfNodesInLayer(layerFrom)) + indexFrom] = value;
+			previousWeightDelta[Nodes.GetWeightOffset(layerTo) + (indexTo * Nodes.NumberOfNodesInLayer(layerFrom)) + indexFrom] = value;
 		}
 	}
 }
