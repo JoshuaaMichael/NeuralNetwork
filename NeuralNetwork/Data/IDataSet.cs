@@ -4,8 +4,6 @@ namespace NeuralNetwork.Data
 {
 	public interface IDataSet : ICloneable
 	{
-		void ImportData();
-
 		int Count();
 		int CountRemaining();
 

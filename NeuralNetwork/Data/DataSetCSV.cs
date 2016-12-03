@@ -1,88 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using LumenWorks.Framework.IO.Csv;
 using NeuralNetwork.Exceptions;
 
 namespace NeuralNetwork.Data
 {
-	public class DataSetCSV : DataSetTextFile
+	public class DataSetCSV : DataSetFile
 	{
-		private DataSetCSV() { }
+		protected int csvColumnCount = -1;
 
-		public DataSetCSV(string filename)
-			: base(filename) { }
+		protected DataSetCSV() { }
 
-		public DataSetCSV(List<IDataRecord> dataRecords)
-			: base(dataRecords) { }
+		public DataSetCSV(string filename, int inputCount, int outputCount)
+			: base(filename, inputCount, outputCount) { }
 
-		protected override Tuple<double[], string> ParseInputs(string line, int numberOfInputs)
+		public DataSetCSV(string filename, int inputCount, int outputCount, int csvColumnCount)
+			: base(filename, inputCount, outputCount)
 		{
-			string[] values = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-			if (numberOfInputs > values.Length)
-			{
-				throw new InvalidDataFileException("Tried to get element which didn't exist on line");
-			}
-
-			double[] doubleValues = new double[numberOfInputs];
-			for (int i = 0; i < numberOfInputs; i++)
-			{
-				doubleValues[i] = double.Parse(values[i].Trim());
-			}
-
-			int indexUsed = GetNthIndex(line, ',', numberOfInputs) + 1; //Get index of where rest of line starts
-
-			string restOfLine = line.Substring(indexUsed);
-
-			return new Tuple<double[], string>(doubleValues, restOfLine);
+			this.csvColumnCount = csvColumnCount;
 		}
 
-		protected override double[] ParseOutput(string line, int numberOfOutputs)
+		public override void ImportData()
 		{
-			string[] values = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-			if (numberOfOutputs > values.Length)
+			using (CsvReader csv = new CsvReader(new StreamReader(filename), false))
 			{
-				throw new InvalidDataFileException("Tried to get element which didn't exist on line");
-			}
-
-			double[] doubleValues = new double[numberOfOutputs];
-			for (int i = 0; i < numberOfOutputs; i++)
-			{
-				doubleValues[i] = double.Parse(values[i].Trim());
-			}
-
-			return doubleValues;
-		}
-
-		private int GetNthIndex(string str, char value, int count)
-		{
-			int occurance = 0;
-			for (int i = 0; i < str.Length; i++)
-			{
-				if (str[i] == value)
+				if(csv.FieldCount != csvColumnCount && csv.FieldCount != inputCount + outputCount)
 				{
-					occurance++;
-					if (occurance == count)
-					{
-						return i;
-					}
+					throw new InvalidDataFileException("Number of fields in data file does not match required");
+				}
+
+				while (csv.ReadNextRecord())
+				{
+					string[] values = new string[csv.FieldCount];
+					csv.CopyCurrentRecordTo(values);
+					HandleLine(values);
 				}
 			}
-			return -1;
+		}
+
+		protected virtual Tuple<double[], double[]> HandleLine(string[] values)
+		{
+			double[] inputValues = ParseInputs(values);
+
+			double[] outputValues = ParseOutput(values);
+
+			return new Tuple<double[], double[]>(inputValues, outputValues);
+		}
+
+		protected virtual double[] ParseInputs(string[] values)
+		{
+			double[] inputValues = new double[inputCount];
+
+			for (int i = 0; i < inputCount; i++)
+			{
+				int result;
+				if(!int.TryParse(values[i], out result))
+				{
+					throw new InvalidDataFileException("Value found that does not parse to double");
+				}
+				inputValues[i] = result;
+			}
+
+			return inputValues;
+		}
+
+		protected virtual double[] ParseOutput(string[] values)
+		{
+			double[] outputValues = new double[outputCount];
+
+			for (int i = inputCount; i < inputCount + outputCount; i++)
+			{
+				int result;
+				if (!int.TryParse(values[i], out result))
+				{
+					throw new InvalidDataFileException("Value found that does not parse to double");
+				}
+				outputValues[i] = result;
+			}
+
+			return outputValues;
 		}
 
 		public override object Clone()
 		{
 			DataSetCSV dscsv = new DataSetCSV();
-			List<IDataRecord> idr = new List<IDataRecord>();
+			IEnumerable<IDataRecord> idr = new List<IDataRecord>();
 
 			foreach (IDataRecord dr in dataRecords)
 			{
 				dscsv.dataRecords.Add((IDataRecord)dr.Clone());
 			}
 
-			dscsv.filename = filename; //Need to implement because abstract base can't
+			dscsv.filename = filename;
 			dscsv.currentIndex = currentIndex;
+			dscsv.csvColumnCount = csvColumnCount;
 			return dscsv;
 		}
 	}
