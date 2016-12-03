@@ -1,5 +1,5 @@
 ﻿
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public abstract class DataSetFile : DataSet, IDataSetImportableData
 	{

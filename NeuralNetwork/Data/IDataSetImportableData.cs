@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public interface IDataSetImportableData : IDataSet
 	{

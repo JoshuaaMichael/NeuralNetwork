@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuralNetwork.ErrorCalculations
+namespace NeuralNetworkLibrary.ErrorCalculations
 {
 	public class ErrorRootMeanSquared : IErrorCalculation
 	{

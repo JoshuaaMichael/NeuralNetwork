@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using NeuralNetwork.Data;
+using NeuralNetworkLibrary.Data;
 
 namespace NeuralNetworkTest.Data
 {

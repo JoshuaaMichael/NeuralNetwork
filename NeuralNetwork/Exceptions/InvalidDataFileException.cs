@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuralNetwork.Exceptions
+namespace NeuralNetworkLibrary.Exceptions
 {
 	public class InvalidDataFileException : Exception
 	{

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using LumenWorks.Framework.IO.Csv;
-using NeuralNetwork.Exceptions;
+using NeuralNetworkLibrary.Exceptions;
 
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public class DataSetCSV : DataSetFile
 	{

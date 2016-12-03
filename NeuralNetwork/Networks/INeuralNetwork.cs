@@ -1,6 +1,6 @@
-﻿using NeuralNetwork.NetworkNodes;
+﻿using NeuralNetworkLibrary.NetworkNodes;
 
-namespace NeuralNetwork.Networks
+namespace NeuralNetworkLibrary.Networks
 {
 	public interface INeuralNetwork
 	{

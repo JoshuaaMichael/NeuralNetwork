@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public class DataRecord : IDataRecord
 	{

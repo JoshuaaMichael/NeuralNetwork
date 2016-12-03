@@ -1,8 +1,8 @@
 ﻿using System;
-using NeuralNetwork.NetworkNodes;
-using NeuralNetwork.ActivationFunctions;
+using NeuralNetworkLibrary.NetworkNodes;
+using NeuralNetworkLibrary.ActivationFunctions;
 
-namespace NeuralNetwork.Networks
+namespace NeuralNetworkLibrary.Networks
 {
 	public class NeuralNetwork : INeuralNetwork
 	{

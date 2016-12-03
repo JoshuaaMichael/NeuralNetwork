@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using NeuralNetwork.Data;
+using NeuralNetworkLibrary.Data;
 using NUnit.Framework.Constraints;
 
 namespace NeuralNetworkTest.Data

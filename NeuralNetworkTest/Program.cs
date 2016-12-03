@@ -1,4 +1,4 @@
-﻿using NeuralNetwork.Data;
+﻿using NeuralNetworkLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;

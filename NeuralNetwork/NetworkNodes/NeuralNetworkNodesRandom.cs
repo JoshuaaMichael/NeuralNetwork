@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuralNetwork.NetworkNodes
+namespace NeuralNetworkLibrary.NetworkNodes
 {
 	public class NeuralNetworkNodesRandom : NeuralNetworkNodes
 	{

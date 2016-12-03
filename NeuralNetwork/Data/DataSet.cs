@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public class DataSet : IDataSet
 	{

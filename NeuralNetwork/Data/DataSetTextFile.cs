@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NeuralNetwork.Data
+namespace NeuralNetworkLibrary.Data
 {
 	public abstract class DataSetTextFile : DataSetFile
 	{

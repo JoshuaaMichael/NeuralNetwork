@@ -1,9 +1,9 @@
 ﻿using System;
-using NeuralNetwork.FileHandling;
+using NeuralNetworkLibrary.FileHandling;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace NeuralNetwork.NetworkNodes
+namespace NeuralNetworkLibrary.NetworkNodes
 {
 	public abstract class NeuralNetworkNodes : INeuralNetworkNodes, ISerializable
 	{

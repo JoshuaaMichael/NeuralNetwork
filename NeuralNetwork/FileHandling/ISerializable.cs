@@ -1,5 +1,5 @@
 ﻿
-namespace NeuralNetwork.FileHandling
+namespace NeuralNetworkLibrary.FileHandling
 {
 	interface ISerializable
 	{

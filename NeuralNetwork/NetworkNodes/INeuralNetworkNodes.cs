@@ -1,5 +1,5 @@
 ﻿
-namespace NeuralNetwork.NetworkNodes
+namespace NeuralNetworkLibrary.NetworkNodes
 {
 	public interface INeuralNetworkNodes
 	{

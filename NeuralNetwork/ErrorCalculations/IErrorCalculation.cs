@@ -1,5 +1,5 @@
 ﻿
-namespace NeuralNetwork.ErrorCalculations
+namespace NeuralNetworkLibrary.ErrorCalculations
 {
 	public interface IErrorCalculation
 	{

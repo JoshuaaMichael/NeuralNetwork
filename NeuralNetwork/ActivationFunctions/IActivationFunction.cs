@@ -1,5 +1,5 @@
 ﻿
-namespace NeuralNetwork.ActivationFunctions
+namespace NeuralNetworkLibrary.ActivationFunctions
 {
 	public interface IActivationFunction
 	{
