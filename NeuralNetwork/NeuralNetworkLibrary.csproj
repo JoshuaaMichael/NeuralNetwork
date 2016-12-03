@@ -55,6 +55,9 @@
     <Compile Include="Data\IDataSet.cs" />
     <Compile Include="Data\IDataSetImportableData.cs" />
     <Compile Include="Exceptions\InvalidDataFileException.cs" />
+    <Compile Include="NetworkNodes\INeuralNetworkNodes.cs" />
+    <Compile Include="NetworkNodes\NeuralNetworkNodes.cs" />
+    <Compile Include="NetworkNodes\NeuralNetworkNodesRandom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
