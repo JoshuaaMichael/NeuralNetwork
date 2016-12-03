@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunctions\ActivationFunctionHyperTan.cs" />
+    <Compile Include="ActivationFunctions\ActiviationFunctionSigmoid.cs" />
+    <Compile Include="ActivationFunctions\IActivationFunction.cs" />
     <Compile Include="Data\DataRecord.cs" />
     <Compile Include="Data\DataSet.cs" />
     <Compile Include="Data\DataSetCSV.cs" />
@@ -58,6 +61,8 @@
     <Compile Include="NetworkNodes\INeuralNetworkNodes.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodes.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodesRandom.cs" />
+    <Compile Include="Networks\INeuralNetwork.cs" />
+    <Compile Include="Networks\NeuralNetwork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

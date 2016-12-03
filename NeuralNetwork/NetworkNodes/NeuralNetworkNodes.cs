@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace NeuralNetwork.NetworkNodes
 {
 	public abstract class NeuralNetworkNodes : INeuralNetworkNodes
@@ -60,34 +62,42 @@ namespace NeuralNetwork.NetworkNodes
 			weights = new double[numberOfWeights];
 		}
 
-		protected double GetBias(int layer, int index)
+		public double GetBias(int layer, int index)
 		{
 			return biases[nodeOffset[layer] + index];
 		}
 
-		protected void SetBias(int layer, int index, double value)
+		public void SetBias(int layer, int index, double value)
 		{
 			biases[nodeOffset[layer] + index] = value;
 		}
 
-		protected double GetSum(int layer, int index)
+		public double GetSum(int layer, int index)
 		{
 			return sums[nodeOffset[layer] + index];
 		}
 
-		protected void SetSum(int layer, int index, double value)
+		public void SetSum(int layer, int index, double value)
 		{
 			sums[nodeOffset[layer] + index] = value;
 		}
 
-		protected double GetWeight(int layerFrom, int indexFrom, int layerTo, int indexTo)
+		public double GetWeight(int layerFrom, int indexFrom, int layerTo, int indexTo)
 		{
 			return weights[weightOffset[layerTo] + (indexTo * NumberOfNodesInLayer(layerFrom)) + indexFrom];
 		}
 
-		protected void SetWeight(int layerFrom, int indexFrom, int layerTo, int indexTo, double value)
+		public void SetWeight(int layerFrom, int indexFrom, int layerTo, int indexTo, double value)
 		{
 			weights[weightOffset[layerTo] + (indexTo * NumberOfNodesInLayer(layerFrom)) + indexFrom] = value;
+		}
+
+		public double[] GetOutputs()
+		{
+			int lastLayer = NumberOfLayers() - 1;
+			double[] layerSums = new double[numberOfNodesByLayer[lastLayer]];
+			Array.Copy(sums, nodeOffset[lastLayer], layerSums, 0, layerSums.Length);
+			return layerSums;
 		}
 
 		protected int GetNodeOffset(int layer)
