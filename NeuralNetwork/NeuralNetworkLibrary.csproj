@@ -36,6 +36,10 @@
     <Reference Include="LumenWorks.Framework.IO">
       <HintPath>..\..\..\..\..\..\DLLs\CsvReader\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +67,7 @@
     <Compile Include="ErrorCalculations\ErrorRootMeanSquared.cs" />
     <Compile Include="ErrorCalculations\IErrorCalculation.cs" />
     <Compile Include="Exceptions\InvalidDataFileException.cs" />
+    <Compile Include="FileHandling\ISerializable.cs" />
     <Compile Include="NetworkNodes\INeuralNetworkNodes.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodes.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodesRandom.cs" />
@@ -73,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

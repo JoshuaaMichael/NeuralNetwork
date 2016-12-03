@@ -1,19 +1,30 @@
-﻿
-using System;
+﻿using System;
+using NeuralNetwork.FileHandling;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace NeuralNetwork.NetworkNodes
 {
-	public abstract class NeuralNetworkNodes : INeuralNetworkNodes
+	public abstract class NeuralNetworkNodes : INeuralNetworkNodes, ISerializable
 	{
+		[JsonProperty]
 		protected int[] numberOfNodesByLayer; //Number of nodes indexed by layer starting at zero
+		[JsonProperty]
 		protected int numberOfNodes;
 
+		[JsonProperty]
 		protected int[] nodeOffset; //Start index of biases/sums indexed by layer in bias/sum array
+		[JsonProperty]
 		protected int[] weightOffset; //Start index of weight indexed by layer in weight array
 
+		[JsonProperty]
 		protected double[] biases; //Array of all biases, layer major, not including input layer
+		[JsonProperty]
 		protected double[] sums;
+		[JsonProperty]
 		protected double[] weights; //Array of all weights, layer major, not including output layer
+
+		protected NeuralNetworkNodes() { }
 
 		public NeuralNetworkNodes(int[] numberOfNodesByLayer)
 		{
@@ -108,6 +119,37 @@ namespace NeuralNetwork.NetworkNodes
 		protected int GetWeightOffset(int layer)
 		{
 			return weightOffset[layer];
+		}
+
+		public virtual void SaveToFile(string filename)
+		{
+			if (filename.Length == 0)
+			{
+				throw new ArgumentException("The filename for saving the file was empty");
+			}
+
+			string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+
+			File.WriteAllText(filename, json);
+		}
+
+		public virtual void ReadFromFile(string filename)
+		{
+			if (!File.Exists(filename))
+			{
+				throw new ArgumentException("File not found");
+			}
+
+			string json = File.ReadAllText(filename);
+			NeuralNetworkNodes loadedNN = JsonConvert.DeserializeObject<NeuralNetworkNodes>(json);
+
+			numberOfNodesByLayer =	loadedNN.numberOfNodesByLayer;
+			numberOfNodes =			loadedNN.numberOfNodes;
+			nodeOffset =			loadedNN.nodeOffset;
+			weightOffset =			loadedNN.weightOffset;
+			biases =				loadedNN.biases;
+			sums =					loadedNN.sums;
+			weights =				loadedNN.weights;
 		}
 	}
 }
