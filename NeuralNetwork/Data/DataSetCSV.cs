@@ -25,6 +25,7 @@ namespace NeuralNetwork.Data
 		{
 			using (CsvReader csv = new CsvReader(new StreamReader(filename), false))
 			{
+				csv.SkipEmptyLines = true;
 				if(csv.FieldCount != csvColumnCount && csv.FieldCount != inputCount + outputCount)
 				{
 					throw new InvalidDataFileException("Number of fields in data file does not match required");
