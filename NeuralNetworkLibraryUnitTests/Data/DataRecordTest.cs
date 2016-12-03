@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using NeuralNetworkLibrary.Data;
 
-namespace NeuralNetworkTest.Data
+namespace NeuralNetworkLibraryUnitTests.Data
 {
 	[TestFixture]
 	class DataRecordTest

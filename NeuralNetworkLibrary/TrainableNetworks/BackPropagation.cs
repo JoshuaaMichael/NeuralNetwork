@@ -2,6 +2,7 @@
 using NeuralNetworkLibrary.ActivationFunctions;
 using NeuralNetworkLibrary.NetworkNodes;
 using NeuralNetworkLibrary.ErrorCalculations;
+using NeuralNetworkLibrary.Networks;
 
 namespace NeuralNetworkLibrary.TrainableNetworks
 {

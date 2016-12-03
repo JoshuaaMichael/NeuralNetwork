@@ -1,12 +1,8 @@
 ﻿using NeuralNetworkLibrary.Data;
 using NeuralNetworkLibrary.NetworkNodes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NeuralNetwork.TrainableNetworks
+namespace NeuralNetworkLibrary.TrainableNetworks
 {
 	public class BackPropagationData
 	{

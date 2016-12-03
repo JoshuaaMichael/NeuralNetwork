@@ -4,7 +4,7 @@ using NUnit.Framework;
 using NeuralNetworkLibrary.Data;
 using NUnit.Framework.Constraints;
 
-namespace NeuralNetworkTest.Data
+namespace NeuralNetworkLibraryUnitTests.Data
 {
 	[TestFixture]
 	class DataSetTest
