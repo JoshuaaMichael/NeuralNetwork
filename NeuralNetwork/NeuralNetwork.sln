@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetwork.csproj", "{84E660DC-0DC1-4F76-A794-2316FDE085D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkLibrary", "NeuralNetworkLibrary.csproj", "{84E660DC-0DC1-4F76-A794-2316FDE085D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkTest", "..\NeuralNetworkTest\NeuralNetworkTest.csproj", "{9B186F94-E101-4226-AA2B-242DA9A8171B}"
 EndProject

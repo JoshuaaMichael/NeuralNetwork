@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeuralNetwork</RootNamespace>
-    <AssemblyName>NeuralNetwork</AssemblyName>
+    <AssemblyName>NeuralNetworkLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LumenWorks.Framework.IO">
+      <HintPath>..\..\..\..\..\..\DLLs\CsvReader\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,9 +49,11 @@
     <Compile Include="Data\DataRecord.cs" />
     <Compile Include="Data\DataSet.cs" />
     <Compile Include="Data\DataSetCSV.cs" />
+    <Compile Include="Data\DataSetFile.cs" />
     <Compile Include="Data\DataSetTextFile.cs" />
     <Compile Include="Data\IDataRecord.cs" />
     <Compile Include="Data\IDataSet.cs" />
+    <Compile Include="Data\IDataSetImportableData.cs" />
     <Compile Include="Exceptions\InvalidDataFileException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

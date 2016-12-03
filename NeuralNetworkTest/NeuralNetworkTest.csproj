@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataRecordTest.cs" />
-    <Compile Include="Data\DataSetCSVTest.cs" />
     <Compile Include="Data\DataSetTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,9 +81,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
+    <ProjectReference Include="..\NeuralNetwork\NeuralNetworkLibrary.csproj">
       <Project>{84e660dc-0dc1-4f76-a794-2316fde085d8}</Project>
-      <Name>NeuralNetwork</Name>
+      <Name>NeuralNetworkLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
