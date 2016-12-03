@@ -47,6 +47,21 @@ namespace NeuralNetworkLibrary.NetworkNodes
 			return numberOfNodesByLayer[layer];
 		}
 
+		public int NumberOfBiases()
+		{
+			return biases.Length;
+		}
+
+		public int NumberOfSums()
+		{
+			return sums.Length;
+		}
+
+		public int NumberOfWeights()
+		{
+			return weights.Length;
+		}
+
 		private void GenerateArrays()
 		{
 			nodeOffset = new int[NumberOfLayers()];
@@ -111,12 +126,12 @@ namespace NeuralNetworkLibrary.NetworkNodes
 			return layerSums;
 		}
 
-		protected int GetNodeOffset(int layer)
+		public int GetNodeOffset(int layer)
 		{
 			return nodeOffset[layer];
 		}
 
-		protected int GetWeightOffset(int layer)
+		public int GetWeightOffset(int layer)
 		{
 			return weightOffset[layer];
 		}

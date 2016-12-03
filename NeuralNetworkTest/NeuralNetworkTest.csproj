@@ -81,13 +81,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork\NeuralNetworkLibrary.csproj">
-      <Project>{84e660dc-0dc1-4f76-a794-2316fde085d8}</Project>
-      <Name>NeuralNetworkLibrary</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\NeuralNetworkLibrary\NeuralNetworkLibrary.csproj">
+      <Project>{bae6b4fc-554a-4069-a5d8-4a1b273cc937}</Project>
+      <Name>NeuralNetworkLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
