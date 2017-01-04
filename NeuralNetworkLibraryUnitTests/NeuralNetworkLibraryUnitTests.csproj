@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Data\DataRecordTest.cs" />
+    <Compile Include="Data\DataSetCsvIris.cs" />
     <Compile Include="Data\DataSetTest.cs" />
     <Compile Include="Networks\NeuralNetworkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

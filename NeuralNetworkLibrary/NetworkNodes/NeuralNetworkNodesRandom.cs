@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace NeuralNetworkLibrary.NetworkNodes
 {
-	public class NeuralNetworkNodesRandom : NeuralNetworkNodes
+	public class NeuralNetworkNodesRandom : NeuralNetworkNodesBase
 	{
 		private static Random rand = new Random();
+
+		private NeuralNetworkNodesRandom() { }
 
 		public NeuralNetworkNodesRandom(string filename)
 		{
@@ -17,14 +21,35 @@ namespace NeuralNetworkLibrary.NetworkNodes
 			GenerateBiasesAndWeights(biasMin, biasMax, weightMin, weightMax);
 		}
 
-		public override void ReadFromFile(string filename)
-		{
-			base.ReadFromFile(filename); //Didn't add any extra members in class, can get away with this
-		}
-
 		public override void SaveToFile(string filename)
 		{
-			base.SaveToFile(filename); //Don't need to save any other members in class, can get away with this
+			if (filename.Length == 0)
+			{
+				throw new ArgumentException("The filename for saving the file was empty");
+			}
+
+			string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+
+			File.WriteAllText(filename, json);
+		}
+
+		public override void ReadFromFile(string filename)
+		{
+			if (!File.Exists(filename))
+			{
+				throw new ArgumentException("File not found");
+			}
+
+			string json = File.ReadAllText(filename);
+			NeuralNetworkNodesRandom loadedNN = JsonConvert.DeserializeObject<NeuralNetworkNodesRandom>(json);
+
+			numberOfNodesByLayer = loadedNN.numberOfNodesByLayer;
+			numberOfNodes = loadedNN.numberOfNodes;
+			nodeOffset = loadedNN.nodeOffset;
+			weightOffset = loadedNN.weightOffset;
+			biases = loadedNN.biases;
+			sums = loadedNN.sums;
+			weights = loadedNN.weights;
 		}
 
 		private void GenerateBiasesAndWeights(double biasMin, double biasMax, double weightMin, double weightMax)

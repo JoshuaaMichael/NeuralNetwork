@@ -15,6 +15,12 @@ namespace NeuralNetworkLibrary.Data
 			this.outputs = outputs;
 		}
 
+		public DataRecord(Tuple<double[], double[]> values)
+		{
+			this.inputs = values.Item1;
+			this.outputs = values.Item2;
+		}
+
 		public object Clone()
 		{
 			DataRecord dr = new DataRecord();

@@ -17,7 +17,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestGetInputs()
+		public void TestDataRecordGetInputs()
 		{
 			//Arrange
 			DataRecord sut  = new DataRecord(inputs, outputs);
@@ -30,7 +30,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestGetOutputs()
+		public void TestDataRecordGetOutputs()
 		{
 			//Arrange
 			DataRecord sut = new DataRecord(inputs, outputs);
@@ -43,7 +43,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestNumberOfInputs()
+		public void TestDataRecordNumberOfInputs()
 		{
 			//Arrange
 			DataRecord sut = new DataRecord(inputs, outputs);
@@ -56,7 +56,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestNumberOfOutputs()
+		public void TestDataRecordNumberOfOutputs()
 		{
 			//Arrange
 			DataRecord sut = new DataRecord(inputs, outputs);
@@ -69,7 +69,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestCloneObjectReference()
+		public void TestDataRecordCloneObjectReference()
 		{
 			//Arrange
 			DataRecord sut = new DataRecord(inputs, outputs);
@@ -82,7 +82,7 @@ namespace NeuralNetworkLibraryUnitTests.Data
 		}
 
 		[Test]
-		public void TestCloneMembersEqual()
+		public void TestDataRecordCloneMembersEqual()
 		{
 			//Arrange
 			DataRecord sut = new DataRecord(inputs, outputs);

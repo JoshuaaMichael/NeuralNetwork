@@ -16,7 +16,12 @@ namespace NeuralNetworkLibrary.Networks
 			{
 				throw new ArgumentException("Incorrect number of activation functions");
 			}
-			this.activationFunctions = activationFunctions;
+			this.activationFunctions = new IActivationFunction[activationFunctions.Length + 1];
+			this.activationFunctions[0] = null; //First layer doesn't need one
+			for(int i = 0; i < activationFunctions.Length; i++)
+			{
+				this.activationFunctions[i + 1] = activationFunctions[i];
+			}
 		}
 
 		public double[] ComputeOutputs(double[] input)
@@ -32,7 +37,7 @@ namespace NeuralNetworkLibrary.Networks
 					double sum = 0;
 					for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++)
 					{
-						sum = ((i == 1) ? input[k] : nodes.GetSum(i - 1, k)) * nodes.GetWeight(i - 1, k, i, j);
+						sum += ((i == 1) ? input[k] : nodes.GetSum(i - 1, k)) * nodes.GetWeight(i - 1, k, i, j);
 					}
 					sum += nodes.GetBias(i, j);
 					sum = activationFunctions[i].Compute(sum);

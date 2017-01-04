@@ -67,6 +67,7 @@
     <Compile Include="FileHandling\ISerializable.cs" />
     <Compile Include="NetworkNodes\INeuralNetworkNodes.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodes.cs" />
+    <Compile Include="NetworkNodes\NeuralNetworkNodesBase.cs" />
     <Compile Include="NetworkNodes\NeuralNetworkNodesRandom.cs" />
     <Compile Include="Networks\INeuralNetwork.cs" />
     <Compile Include="Networks\NeuralNetwork.cs" />

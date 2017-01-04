@@ -35,7 +35,8 @@ namespace NeuralNetworkLibrary.Data
 				{
 					string[] values = new string[csv.FieldCount];
 					csv.CopyCurrentRecordTo(values);
-					HandleLine(values);
+					Tuple<double[], double[]>  lineValue = HandleLine(values);
+					dataRecords.Add(new DataRecord(lineValue));
 				}
 			}
 		}
@@ -55,8 +56,8 @@ namespace NeuralNetworkLibrary.Data
 
 			for (int i = 0; i < inputCount; i++)
 			{
-				int result;
-				if(!int.TryParse(values[i], out result))
+				double result;
+				if(!double.TryParse(values[i], out result))
 				{
 					throw new InvalidDataFileException("Value found that does not parse to double");
 				}
