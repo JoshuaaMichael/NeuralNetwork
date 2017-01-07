@@ -45,14 +45,14 @@ namespace NeuralNetworkLibraryExamples
 		public void RunExample()
 		{
 			double trainingPercentage = 0.8;
-			double eta = 0.01;
-			double alpha = 0.05;
+			double learnRate = 0.04;
+			double momentum = 0.02;
 			double targetError = 0.20;
 			double targetCorrect = 0.95;
-			int numberOfEpochs = 1000;
-			int numberOfIterations = 200;
+			int numberOfEpochs = 300;
+			int numberOfIterations = 300;
 
-			BackPropagationData backPropData = new BackPropagationData(randNodes, data, trainingPercentage, eta, alpha, targetError, targetCorrect, numberOfEpochs, numberOfIterations, new ErrorPercentage());
+			BackPropagationData backPropData = new BackPropagationData(randNodes, data, trainingPercentage, learnRate, momentum, targetError, targetCorrect, numberOfEpochs, numberOfIterations, new ErrorPercentage());
 			BackPropagation backProp = new BackPropagation(backPropData, activationFunctions);
 
 

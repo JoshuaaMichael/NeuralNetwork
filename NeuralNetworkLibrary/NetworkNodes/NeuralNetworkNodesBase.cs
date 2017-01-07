@@ -36,15 +36,25 @@ namespace NeuralNetworkLibrary.NetworkNodes
 		}
 
 		public NeuralNetworkNodesBase(int[] numberOfNodesByLayer, double[] biases, double[] sums, double[] weights)
-			: this(numberOfNodesByLayer)
 		{
+			this.numberOfNodesByLayer = numberOfNodesByLayer;
 			CalculateOffsets();
-			if (biases.Length != numberOfNodes ||
-				sums.Length != numberOfNodes ||
-				weights.Length != numberOfWeights)
+
+			if(biases.Length != NumberOfBiases())
 			{
-				throw new ArgumentException("One of the input arrays are the wrong size");
+				throw new ArgumentException("Bias input arrays is the wrong size");
 			}
+
+			if (sums.Length != NumberOfSums())
+			{
+				throw new ArgumentException("Sums input arrays is the wrong size");
+			}
+
+			if (weights.Length != NumberOfWeights())
+			{
+				throw new ArgumentException("Weight input arrays is the wrong size");
+			}
+
 			this.biases = biases;
 			this.sums = sums;
 			this.weights = weights;
@@ -67,12 +77,12 @@ namespace NeuralNetworkLibrary.NetworkNodes
 
 		public int NumberOfBiases()
 		{
-			return numberOfNodes;
+			return numberOfNodes - numberOfNodesByLayer[0];
 		}
 
 		public int NumberOfSums()
 		{
-			return numberOfNodes;
+			return numberOfNodes - numberOfNodesByLayer[0];
 		}
 
 		public int NumberOfWeights()
@@ -100,12 +110,15 @@ namespace NeuralNetworkLibrary.NetworkNodes
 				weightOffset[i] = numberOfWeights;
 				numberOfWeights += NumberOfNodesInLayer(i) * NumberOfNodesInLayer(i - 1);
 			}
+
+			//Adding here so doesn't effect offsets, but is still added to total
+			numberOfNodes += numberOfNodesByLayer[0];
 		}
 
 		private void GenerateArrays()
 		{
-			biases = new double[numberOfNodes];
-			sums = new double[numberOfNodes];
+			biases = new double[numberOfNodes - numberOfNodesByLayer[0]];
+			sums = new double[numberOfNodes - numberOfNodesByLayer[0]];
 			weights = new double[numberOfWeights];
 		}
 

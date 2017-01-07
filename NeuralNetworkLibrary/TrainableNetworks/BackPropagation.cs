@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
+//TODO: Update weights -> http://quaetrix.com/Build2014.html
+
 namespace NeuralNetworkLibrary.TrainableNetworks
 {
 	public class BackPropagation : NeuralNetwork, ITrainableNetwork
@@ -20,15 +22,14 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 			monitor = new List<double[]>();
 		}
 
-		protected double[] UpdateWeights(double[] input, double[] target)
+		public double[] UpdateWeights(double[] input, double[] target)
 		{
-			//Update the gradients - Each node has it's own gradient
-			//Must be done from output to input
+			#region Calculate gradients - Must be done backwards
 			for (int i = nodes.NumberOfLayers() - 1; i > 0; i--) //What layer we're on
 			{
 				if (i == nodes.NumberOfLayers() - 1) //The last layer
 				{
-					for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //go through the nodes in this layer
+					for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //Go through the nodes in this layer
 					{
 						double derivative = activationFunctions[i].ComputeDerivative(nodes.GetSum(i, j));
 						double value = derivative * (target[j] - nodes.GetSum(i, j));
@@ -39,24 +40,29 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 				{
 					for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //Go through this layers node
 					{
+
 						double derivative = activationFunctions[i].ComputeDerivative(nodes.GetSum(i, j));
 						double sum = 0.0;
-						for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++) //Add in sums of weights between this node and each of last layers node
-							sum += backPropagationData.GetGradient(i, j) * nodes.GetWeight(i - 1, k, i, j);
+
+						for(int k = 0; k < nodes.NumberOfNodesInLayer(i + 1); k++)
+						{
+							sum += backPropagationData.GetGradient(i + 1, k) * nodes.GetWeight(i + 1, k, i, j);
+						}
 						double value = derivative * sum;
 						backPropagationData.SetGradient(i, j, value);
 					}
 				}
 			}
+			#endregion
 
-			//Update the weights
-			//Can be done either direction, lets go forwards
+			#region Update weights - Can be done either direction, lets go forwards
 			for (int i = 1; i < nodes.NumberOfLayers(); i++)
 			{
-				for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //current layers node node
+				for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //current layer's node
 				{
-					for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++) //node on last layer
+					for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++) //last layer's node
 					{
+						//Not sure on GetGradient values
 						double delta = backPropagationData.LearnRate * backPropagationData.GetGradient(i, j) * ((i != 1) ? nodes.GetSum(i - 1, k) : input[k]);
 						double newWeight = nodes.GetWeight(i - 1, k, i, j) + delta + (backPropagationData.Momentum * backPropagationData.GetPreviousWeightDelta(i - 1, k, i, j));
 						nodes.SetWeight(i - 1, k, i, j, newWeight);
@@ -64,80 +70,20 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 					}
 				}
 			}
+			#endregion
 
-			//Update the biases
+			#region Update biases
 			for (int i = 1; i < nodes.NumberOfLayers(); i++)
 			{
 				for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++)
 				{
-					double delta = backPropagationData.LearnRate * backPropagationData.GetGradient(i, j);
-					double newBias = nodes.GetBias(i, j) + delta + (backPropagationData.Momentum * backPropagationData.GetPreviousBiasDelta(i, j));
-					nodes.SetBias(i, j, newBias);
-					backPropagationData.SetPreviousBiasDelta(i, j, delta);
-				}
-			}
-
-			return ComputeOutputs(input);
-		}
-
-
-		public double[] UpdateWeights2(double[] input, double[] target)
-		{
-			//Calculate gradients
-			for (int i = nodes.NumberOfLayers() - 1; i > 0; i--) //What layer we're on
-			{
-				if (i == nodes.NumberOfLayers() - 1) //The last layer
-				{
-					for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //go through the nodes in this layer
-					{
-						double derivative = activationFunctions[i].ComputeDerivative(nodes.GetSum(i, j));
-						double value = derivative * (target[j] - nodes.GetSum(i, j));
-						backPropagationData.SetGradient(i, j, value);
-					}
-				}
-				else
-				{
-					for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //Go through this layers node
-					{
-						double derivative = activationFunctions[i].ComputeDerivative(nodes.GetSum(i, j));
-						double sum = 0.0;
-						//TODO: Reconsile this -> http://quaetrix.com/Build2014.html
-						for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++) //Add in sums of weights between this node and each of last layers node
-							sum += backPropagationData.GetGradient(i, j) * nodes.GetWeight(i - 1, k, i, j);
-						double value = derivative * sum;
-						backPropagationData.SetGradient(i, j, value);
-					}
-				}
-			}
-
-			//TODO use the gradients in here, not weight gradients
-
-			//Update weights - Can be done either direction, lets go forwards
-			for (int i = 1; i < nodes.NumberOfLayers(); i++)
-			{
-				for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++) //current layer's node
-				{
-					for (int k = 0; k < nodes.NumberOfNodesInLayer(i - 1); k++) //last layer's node
-					{
-						double delta = backPropagationData.LearnRate * backPropagationData.GetWeightGradient(i - 1, k, i, j) * ((i != 1) ? nodes.GetSum(i - 1, k) : input[k]);
-						double newWeight = nodes.GetWeight(i - 1, k, i, j) + delta + (backPropagationData.Momentum * backPropagationData.GetPreviousWeightDelta(i - 1, k, i, j));
-						nodes.SetWeight(i - 1, k, i, j, newWeight);
-						backPropagationData.SetPreviousWeightDelta(i - 1, k, i, j, delta);
-					}
-				}
-			}
-
-			//Update biases
-			for (int i = 1; i < nodes.NumberOfLayers(); i++)
-			{
-				for (int j = 0; j < nodes.NumberOfNodesInLayer(i); j++)
-				{
-					double delta = backPropagationData.GetBiasGradient(i, j) * backPropagationData.LearnRate;
+					double delta = backPropagationData.GetGradient(i, j) * backPropagationData.LearnRate;
 					double newBias = nodes.GetBias(i, j) + delta + (backPropagationData.GetPreviousBiasDelta(i, j) * backPropagationData.Momentum);
 					nodes.SetBias(i, j, newBias);
 					backPropagationData.SetPreviousBiasDelta(i, j, delta);
 				}
 			}
+			#endregion
 
 			return ComputeOutputs(input);
 		}
@@ -164,9 +110,9 @@ namespace NeuralNetworkLibrary.TrainableNetworks
 					}
 				}
 				percentCorrect = GetPercentageCorrect();
-				//AddOutputToMonitor();
+				AddOutputToMonitor();
 			}
-			//WriteArray();
+			WriteArray();
 		}
 
 		private void AddOutputToMonitor()

@@ -45,14 +45,15 @@ namespace NeuralNetworkLibrary.NetworkNodes
 
 			numberOfNodesByLayer = loadedNN.numberOfNodesByLayer;
 			numberOfNodes = loadedNN.numberOfNodes;
+			numberOfWeights = loadedNN.numberOfWeights;
 			nodeOffset = loadedNN.nodeOffset;
 			weightOffset = loadedNN.weightOffset;
 			biases = loadedNN.biases;
 			sums = loadedNN.sums;
 			weights = loadedNN.weights;
-		}
+	}
 
-		private void GenerateBiasesAndWeights(double biasMin, double biasMax, double weightMin, double weightMax)
+	private void GenerateBiasesAndWeights(double biasMin, double biasMax, double weightMin, double weightMax)
 		{
 			for (int i = 0; i < weights.Length; i++)
 			{
